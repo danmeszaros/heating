@@ -1,0 +1,3 @@
+* *   * * *   dna	cd /home/dna/thermo && timeout 60 ./reporter.py
+*/5 *   * * *   root    timeout 300 ping -i 1 -c 3 8.8.8.8
+
