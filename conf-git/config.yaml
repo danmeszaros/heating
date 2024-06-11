@@ -2,18 +2,69 @@
 appRoot: /home/dna/heating/
 logFile: /home/dna/heating/log/log
 
-sensorsMapping:
-  temp0:  1000
-  temp1:  1001
-  temp2:  1002
-  temp3:  1003
-  temp4:  1004
-  temp5:  1005
-  temp6:  1006
-  temp7:  1007
-  relay0:  2000
-  relay1:  2001
-  relay2:  2002
-  relay3:  2003
-  relay4:  2004
-  relay5:  2006
+calibrationPoints: "-20, -1, 26, 50, 82, 112"
+
+sensors:
+    - temp0:
+        sourceId: 0
+        calibrations: "434, 858, 1441, 1992, 2634, 3128"
+        type: 'analog'
+    - temp1:
+        sourceId: 1
+        calibrations: "434, 864, 1452, 2003, 2656, 3224"
+        type: "analog"
+    - temp2:
+        sourceId: 2
+        calibrations: "460, 886, 1478, 2014, 2661, 3259"
+        type: "analog"
+    - temp3:
+        sourceId: 3
+        calibrations: "477, 901, 1492, 2029, 2675, 3270"
+        type: "analog"
+    - temp4:
+        sourceId: 4
+        calibrations: "466, 889, 1480, 2013, 2659, 3253"
+        type: "analog"
+    - temp5:
+        sourceId: 5
+        calibrations: "460, 885, 1475, 2006, 2655, 3250"
+        type: "analog"
+    - switch0:
+        sourceId: 10
+        type: "digital"
+    - switch1:
+        sourceId: 11
+        type: "digital"
+        
+reporter:
+    url: "http://www.dna1.cd/"
+    values:
+        - dev: "temp0"
+          id: 1000
+        - dev: "temp1"
+          id: 1001
+        - dev: "temp2"
+          id: 1002
+        - dev: "temp3"
+          id: 1003
+        - dev: "temp4"
+          id: 1004
+        - dev: "temp5"
+          id: 1005
+        - dev: "relay0"
+          id: 2000
+        - dev: "relay1"
+          id: 2001
+        - dev: "relay2"
+          id: 2002
+        - dev: "relay3"
+          id: 2003
+        - dev: "relay4"
+          id: 2004
+        - dev: "relay5"
+          id: 2005
+        - dev: "switch0"
+          id: 1100
+        - dev: "switch1"
+          id: 1101
+
