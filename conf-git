@@ -1,5 +1,6 @@
 # conf template, not to be used directly from this location
 appRoot: /home/dna/heating/
+logFile: /home/dna/heating/log/log
 
 sensorsMapping:
   temp0:  1000
