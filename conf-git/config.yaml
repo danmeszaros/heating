@@ -29,6 +29,14 @@ sensors:
         sourceId: 5
         calibrations: "460, 885, 1475, 2006, 2655, 3250"
         type: "analog"
+    - temp6:
+        sourceId: 6
+        calibrations: "464, 885, 1476, 2010, 2659, 3247"
+        type: "analog"
+    - temp7:
+        sourceId: 7
+        calibrations: "453, 880, 1470, 2002, 2649, 3240"
+        type: "analog"
     - switch0:
         sourceId: 10
         type: "digital"
