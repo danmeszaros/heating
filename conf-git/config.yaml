@@ -5,44 +5,44 @@ logFile: /home/dna/heating/log/log
 calibrationPoints: "-20, -1, 26, 50, 82, 112"
 
 sensors:
-    - temp0:
-        sourceId: 0
-        calibrations: "434, 858, 1441, 1992, 2634, 3128"
-        type: 'analog'
-    - temp1:
-        sourceId: 1
-        calibrations: "434, 864, 1452, 2003, 2656, 3224"
-        type: "analog"
-    - temp2:
-        sourceId: 2
-        calibrations: "460, 886, 1478, 2014, 2661, 3259"
-        type: "analog"
-    - temp3:
-        sourceId: 3
-        calibrations: "477, 901, 1492, 2029, 2675, 3270"
-        type: "analog"
-    - temp4:
-        sourceId: 4
-        calibrations: "466, 889, 1480, 2013, 2659, 3253"
-        type: "analog"
-    - temp5:
-        sourceId: 5
-        calibrations: "460, 885, 1475, 2006, 2655, 3250"
-        type: "analog"
-    - temp6:
-        sourceId: 6
-        calibrations: "464, 885, 1476, 2010, 2659, 3247"
-        type: "analog"
-    - temp7:
-        sourceId: 7
-        calibrations: "453, 880, 1470, 2002, 2649, 3240"
-        type: "analog"
-    - switch0:
-        sourceId: 10
-        type: "digital"
-    - switch1:
-        sourceId: 11
-        type: "digital"
+    - name: "temp0"
+      sourceId: 0
+      calibrations: "434, 858, 1441, 1992, 2634, 3128"
+      type: 'analog'
+    - name: "temp1"
+      sourceId: 1
+      calibrations: "434, 864, 1452, 2003, 2656, 3224"
+      type: "analog"
+    - name: "temp2"
+      sourceId: 2
+      calibrations: "460, 886, 1478, 2014, 2661, 3259"
+      type: "analog"
+    - name: "temp3"
+      sourceId: 3
+      calibrations: "477, 901, 1492, 2029, 2675, 3270"
+      type: "analog"
+    - name: "temp4"
+      sourceId: 4
+      calibrations: "466, 889, 1480, 2013, 2659, 3253"
+      type: "analog"
+    - name: "temp5"
+      sourceId: 5
+      calibrations: "460, 885, 1475, 2006, 2655, 3250"
+      type: "analog"
+    - name: "temp6"
+      sourceId: 6
+      calibrations: "464, 885, 1476, 2010, 2659, 3247"
+      type: "analog"
+    - name: "temp7"
+      sourceId: 7
+      calibrations: "453, 880, 1470, 2002, 2649, 3240"
+      type: "analog"
+    - name: "switch0"
+      sourceId: 10
+      type: "digital"
+    - name: "switch1"
+      sourceId: 11
+      type: "digital"
         
 reporter:
     url: "http://www.dna1.cd/"
