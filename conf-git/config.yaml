@@ -52,7 +52,7 @@ sensors:
         
 reporter:
     valueLog: "log/values.txt"
-    url: "http://www.dna1.cz/"
+    url: "www.dna1.cz"
     mapping:
         - dev: "temp0"
           id: 1000

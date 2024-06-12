@@ -17,6 +17,18 @@ def logValue(sensorId, value):
     except Exception as e:
         log.error("failed to write to log '%s': %s", fname, repr(e))
 
+def sendValue(sensor_id, value):
+    path = "/report.py?id=%d&temp=%.1f" %(sensor_id, value)
+    try:
+        connection = http.client.HTTPConnection(config['reporter']['url'])
+        connection.request("GET", path)
+        response = connection.getresponse()
+        connection.close()
+
+    except:
+        pass
+
+
 
 if __name__ == "__main__":
     config = lib.config.read()
@@ -35,11 +47,7 @@ if __name__ == "__main__":
 
         if status == lib.sensor.VALUE_OK or ((not aging) and status == lib.sensor.VALUE_OLD):
             logValue(dev, value)
-            try:
-                reportValue(sensorId, value)
-            except:
-                pass
-
+            sendValue(sensorId, value)
 
             print("%s %d %d" %(dev, sensorId, value))
             
