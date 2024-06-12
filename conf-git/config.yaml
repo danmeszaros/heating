@@ -51,7 +51,7 @@ sensors:
       type: "digital"
         
 reporter:
-    valueLog: "log/values/txt"
+    valueLog: "log/values.txt"
     url: "http://www.dna1.cz/"
     mapping:
         - dev: "temp0"

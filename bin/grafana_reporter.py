@@ -6,6 +6,18 @@ import datetime
 import lib.sensor
 import lib.config
 
+def logValue(sensorId, value):
+    fname = config['appRoot'] + config['reporter']['valueLog']
+
+    try:
+        outf = open(fname, "a")
+        outf.write(str(datetime.datetime.now()) + " ")
+        outf.write("%s %.1f" %(sensorId, value) + "\n")
+        outf.close()
+    except Exception as e:
+        log.error("failed to write to log '%s': %s", fname, repr(e))
+
+
 if __name__ == "__main__":
     config = lib.config.read()
 
@@ -22,5 +34,12 @@ if __name__ == "__main__":
         sensorId = item['id']
 
         if status == lib.sensor.VALUE_OK or ((not aging) and status == lib.sensor.VALUE_OLD):
+            logValue(dev, value)
+            try:
+                reportValue(sensorId, value)
+            except:
+                pass
+
+
             print("%s %d %d" %(dev, sensorId, value))
             
