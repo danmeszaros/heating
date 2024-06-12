@@ -4,6 +4,12 @@ logFile: /home/dna/heating/log/log
 
 calibrationPoints: "-20, -1, 26, 50, 82, 112"
 
+serial:
+    baudrate: 9600
+    device:
+        - '/dev/ttyUSB0'
+        - '/dev/ttyUSB1'
+
 sensors:
     - name: "temp0"
       sourceId: 0

@@ -5,21 +5,32 @@ import serial
 import lib.sensor
 import lib.config
 import pprint
+import logging as log
 
 # fetch data from serial line
 def readSerial():
 
-    """
-    try:
-        ser = serial.Serial('/dev/ttyUSB0', baudrate=9600)
-    except:
-        ser = serial.Serial('/dev/ttyUSB1', baudrate=9600)
-    """
+    #"""
+    baudrate = config['serial']['baudrate']
+    ser = None
+
+    for dev in config['serial']['device']:
+        try:
+            ser = serial.Serial(dev, baudrate = baudrate)
+            break
+        except:
+            pass
+
+    if ser == None:
+        log.error("no serial device found")
+        return {}
 
     #"""
+
+    """
     # for testing:
     ser = open("/dev/stdin", "rb")
-    #"""
+    """
 
     line = ser.readline().decode("ascii")
 
