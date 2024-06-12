@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-import yaml
 import serial
 import lib.sensor
 import lib.config

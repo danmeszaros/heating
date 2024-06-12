@@ -51,8 +51,9 @@ sensors:
       type: "digital"
         
 reporter:
-    url: "http://www.dna1.cd/"
-    values:
+    valueLog: "log/values/txt"
+    url: "http://www.dna1.cz/"
+    mapping:
         - dev: "temp0"
           id: 1000
         - dev: "temp1"
@@ -67,18 +68,24 @@ reporter:
           id: 1005
         - dev: "relay0"
           id: 2000
+          aging: false
         - dev: "relay1"
           id: 2001
-        - dev: "relay2"
-          id: 2002
-        - dev: "relay3"
-          id: 2003
-        - dev: "relay4"
-          id: 2004
-        - dev: "relay5"
-          id: 2005
-        - dev: "switch0"
-          id: 1100
-        - dev: "switch1"
-          id: 1101
+          aging: false
+#        - dev: "relay2"
+#          id: 2002
+#          aging: false
+#        - dev: "relay3"
+#          id: 2003
+#          aging: false
+#        - dev: "relay4"
+#          id: 2004
+#          aging: false
+#        - dev: "relay5"
+#          id: 2005
+#          aging: false
+#        - dev: "switch0"
+#          id: 1100
+#        - dev: "switch1"
+#          id: 1101
 
