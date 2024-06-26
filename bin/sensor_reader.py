@@ -9,7 +9,7 @@ import logging as log
 # fetch data from serial line
 def readSerial():
 
-    """
+    #"""
     baudrate = config['serial']['baudrate']
     ser = None
 
@@ -24,9 +24,9 @@ def readSerial():
         log.error("no serial device found")
         return {}
 
-    """
-
     #"""
+
+    """
     # for testing:
     ser = open("/dev/stdin", "rb")
     #"""

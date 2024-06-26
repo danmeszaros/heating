@@ -11,7 +11,7 @@ VALUE_OK = 1
 VALUE_OLD = 2
 VALUE_ERROR = 3
 
-VALUE_MAX_AGE = 300
+VALUE_MAX_AGE = 180
 
 def setValue(config, sensorName, value):
 
@@ -25,7 +25,7 @@ def setValue(config, sensorName, value):
             history.insert(0, {'value': sensorData['value'], 'ts': sensorData['ts'], 'datetime': sensorData['datetime']})
 
             if len(history) > 50:
-                history = history[0:50]
+                sensorData['history'] = history[0:50]
         else:
             log.warning("creating file '%s'", fname)
             sensorData = {'history': []}

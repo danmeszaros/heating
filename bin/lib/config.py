@@ -1,5 +1,10 @@
 import yaml
 import os
+import logging
 
 def read():
-    return yaml.safe_load(open(os.environ.get('CONFIG')))
+    conf = yaml.safe_load(open(os.environ.get('CONFIG')))
+
+    logging.basicConfig(filename=conf['logFile'], encoding='utf-8', level=logging.DEBUG)
+
+    return conf
