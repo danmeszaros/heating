@@ -1,0 +1,94 @@
+# conf template, not to be used directly from this location
+appRoot: /home/dna/heating/
+logFile: /home/dna/heating/log/log
+
+calibrationPoints: "-20, -1, 26, 50, 82, 112"
+
+serial:
+    baudrate: 9600
+    device:
+        - '/dev/ttyUSB0'
+        - '/dev/ttyUSB1'
+
+sensors:
+    - name: "temp0"
+      sourceId: 0
+      calibrations: "434, 858, 1441, 1992, 2634, 3128"
+      type: 'analog'
+    - name: "temp1"
+      sourceId: 1
+      calibrations: "434, 864, 1452, 2003, 2656, 3224"
+      type: "analog"
+    - name: "temp2"
+      sourceId: 2
+      calibrations: "460, 886, 1478, 2014, 2661, 3259"
+      type: "analog"
+    - name: "temp3"
+      sourceId: 3
+      calibrations: "477, 901, 1492, 2029, 2675, 3270"
+      type: "analog"
+    - name: "temp4"
+      sourceId: 4
+      calibrations: "466, 889, 1480, 2013, 2659, 3253"
+      type: "analog"
+    - name: "temp5"
+      sourceId: 5
+      calibrations: "460, 885, 1475, 2006, 2655, 3250"
+      type: "analog"
+    - name: "temp6"
+      sourceId: 6
+      calibrations: "464, 885, 1476, 2010, 2659, 3247"
+      type: "analog"
+    - name: "temp7"
+      sourceId: 7
+      calibrations: "453, 880, 1470, 2002, 2649, 3240"
+      type: "analog"
+    - name: "switch0"
+      sourceId: 10
+      type: "digital"
+    - name: "switch1"
+      sourceId: 11
+      type: "digital"
+        
+reporter:
+    valueLog: "log/values.txt"
+    url: "www.dna1.cz"
+    mapping:
+        - dev: "temp2"
+          id: 1002
+        - dev: "temp3"
+          id: 1003
+        - dev: "temp4"
+          id: 1004
+        - dev: "temp5"
+          id: 1005
+        - dev: "temp6"
+          id: 1006
+        - dev: "temp7"
+          id: 1007
+        - dev: "relay1"
+          id: 2000
+          aging: false
+        - dev: "relay2"
+          id: 2001
+          aging: false
+        - dev: "relay7"
+          id: 2007
+          aging: false
+#        - dev: "relay2"
+#          id: 2002
+#          aging: false
+#        - dev: "relay3"
+#          id: 2003
+#          aging: false
+#        - dev: "relay4"
+#          id: 2004
+#          aging: false
+#        - dev: "relay5"
+#          id: 2005
+#          aging: false
+#        - dev: "switch0"
+#          id: 1100
+#        - dev: "switch1"
+#          id: 1101
+
