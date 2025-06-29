@@ -68,3 +68,33 @@ def getValue(config, sensorName):
     except Exception as e:
         log.error("failed to read sensor '%s': %s", fname, repr(e))
         return (VALUE_ERROR, 0)
+
+def isValueStable(config, sensorName, minutes):
+    fname = config['appRoot'] + "dev/" + sensorName
+
+    try:
+        sensorData = json.load(open(fname))
+        # check history
+        nnow = time.time()
+    
+        # get last value
+        if (nnow - sensorData['ts']) > (minutes * 60):
+            # history is not consistent (probably stale)
+            return False
+
+        lastValue = sensorData['value']
+
+        # check history
+        for item in sensorData["history"]:
+            if (nnow - item['ts']) < (minutes * 60):
+                if item['value'] != lastValue:
+                    return False
+            else:
+                return True
+
+        return False
+
+    except Exception as e:
+        log.error("failed to read sensor '%s': %s", fname, repr(e))
+
+    return False

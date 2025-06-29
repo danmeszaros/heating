@@ -49,6 +49,9 @@ sensors:
     - name: "switch1"
       sourceId: 11
       type: "digital"
+    - name: "state0"
+      sourceId: 20
+      type: "digital"
         
 reporter:
     valueLog: "log/values.txt"
@@ -74,6 +77,9 @@ reporter:
           aging: false
         - dev: "relay7"
           id: 2007
+          aging: false
+        - dev: "state0"
+          id: 3000
           aging: false
 #        - dev: "relay2"
 #          id: 2002
