@@ -32,6 +32,7 @@ elif collectorTemp < 20.0 or collectorOutTemp < 20.0:
 #
 currentState = lib.sensor.getValue(config, "state0")[1]
 newState = currentState
+paused = False
 
 if currentState == 0:
     # system off
@@ -75,6 +76,11 @@ elif currentState == 2:
     while True:
         # is the sytem stabilized?
         if lib.sensor.isValueStable(config, "state0", 10) == False:
+            if lib.sensor.isValueStable(config, "state0", 5) == True:
+                paused = True
+                log.info("paused in state 2")
+                break
+
             log.info("waiting for system to stabilize (state2)")
             # let system stabilize
             break
@@ -107,7 +113,10 @@ elif newState == 1:
     lib.sensor.setValue(config, "relay8", 0.0)
     pass
 elif newState == 2:
-    lib.sensor.setValue(config, "relay1", 1.0)
+    if paused:
+        lib.sensor.setValue(config, "relay1", 0.0)
+    else:
+        lib.sensor.setValue(config, "relay1", 1.0)
     lib.sensor.setValue(config, "relay8", 1.0)
     pass
 
