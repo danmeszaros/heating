@@ -16,16 +16,6 @@ boilerTemp = lib.sensor.getValue(config, "temp2")[1]
 waterToGroundTemp = lib.sensor.getValue(config, "temp6")[1]
 waterOutGroundTemp = lib.sensor.getValue(config, "temp7")[1]
 
-"""
-if collectorTemp > 45.0 or collectorOutTemp > 30.0:
-    # turn on pump
-    lib.sensor.setValue(config, "relay1", 1.0)
-    log.info("starting collector pump")
-elif collectorTemp < 20.0 or collectorOutTemp < 20.0:
-    # turn off pump
-    lib.sensor.setValue(config, "relay1", 0.0)
-    log.info("stopping collector pump")
-"""
 
 #################################################################
 # state machine
