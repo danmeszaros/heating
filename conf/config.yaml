@@ -78,6 +78,9 @@ reporter:
         - dev: "relay7"
           id: 2007
           aging: false
+        - dev: "relay8"
+          id: 2008
+          aging: false
         - dev: "state0"
           id: 3000
           aging: false

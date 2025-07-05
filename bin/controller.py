@@ -72,13 +72,25 @@ elif currentState == 2:
     # boiler heating
     # of temp diff of boiler is smaller than 3
     # or if absolute temp of boiler 57C
-    if boilerTemp > 57:
-        log.info("boiler temp on target. switching to 1")
-        newState = 1
-    elif collectorOutTemp - boilerTemp < 3:
-        # prevent cooling the boiler
-        log.info("boiler heating temp not high enough, switching to 1")
-        newState = 1
+    while True:
+        # is the sytem stabilized?
+        if lib.sensor.isValueStable(config, "state0", 10) == False:
+            log.info("waiting for system to stabilize (state2)")
+            # let system stabilize
+            break
+
+        if boilerTemp > 57:
+            log.info("boiler temp on target. switching to 1")
+            newState = 1
+            break
+        elif collectorOutTemp - boilerTemp < 3:
+            # prevent cooling the boiler
+            log.info("boiler heating temp not high enough, switching to 1")
+            newState = 1
+            break
+
+        break
+    
 
 
 # update state
@@ -88,15 +100,15 @@ if currentState != newState:
 # update relays
 if newState == 0:
     lib.sensor.setValue(config, "relay1", 0.0)
-    lib.sensor.setValue(config, "relay7", 0.0)
+    lib.sensor.setValue(config, "relay8", 0.0)
     pass
 elif newState == 1:
     lib.sensor.setValue(config, "relay1", 1.0)
-    lib.sensor.setValue(config, "relay7", 0.0)
+    lib.sensor.setValue(config, "relay8", 0.0)
     pass
 elif newState == 2:
     lib.sensor.setValue(config, "relay1", 1.0)
-    lib.sensor.setValue(config, "relay7", 1.0)
+    lib.sensor.setValue(config, "relay8", 1.0)
     pass
 
 lib.sensor.setValue(config, "state0", newState)
