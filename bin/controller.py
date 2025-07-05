@@ -14,7 +14,9 @@ collectorTemp = lib.sensor.getValue(config, "temp3")[1]
 collectorOutTemp = lib.sensor.getValue(config, "temp5")[1]
 boilerTemp = lib.sensor.getValue(config, "temp2")[1]
 waterToGroundTemp = lib.sensor.getValue(config, "temp6")[1]
+waterOutGroundTemp = lib.sensor.getValue(config, "temp7")[1]
 
+"""
 if collectorTemp > 45.0 or collectorOutTemp > 30.0:
     # turn on pump
     lib.sensor.setValue(config, "relay1", 1.0)
@@ -23,6 +25,7 @@ elif collectorTemp < 20.0 or collectorOutTemp < 20.0:
     # turn off pump
     lib.sensor.setValue(config, "relay1", 0.0)
     log.info("stopping collector pump")
+"""
 
 #################################################################
 # state machine
@@ -33,6 +36,7 @@ newState = currentState
 if currentState == 0:
     # system off
     if collectorTemp > 45.0 or collectorOutTemp > 30.0:
+        log.info("starting collector pump")
         newState = 1
 elif currentState == 1:
     # ground circulation
@@ -50,11 +54,18 @@ elif currentState == 1:
             newState = 0
             break
 
+        if waterToGroundTemp - waterOutGroundTemp < 2.0:
+            log.info("ground gradient too low, switching to 0")
+            newState = 0
+            break
+
         # water to ground more than 18? enough power for heating the boiler
         if waterToGroundTemp > 18.0:
             log.info("switching to boiler")
             newState = 2
+            break
 
+        # no change
         break
     
 elif currentState == 2:
@@ -69,16 +80,24 @@ elif currentState == 2:
         log.info("boiler heating temp not high enough, switching to 1")
         newState = 1
 
+
+# update state
 if currentState != newState:
     log.info("changing state from %d to %d" %(currentState, newState))
 
-    # update relays
-    if newState == 0:
-        pass
-    elif newState == 1:
-        pass
-    elif newState == 2:
-        pass
+# update relays
+if newState == 0:
+    lib.sensor.setValue(config, "relay1", 0.0)
+    lib.sensor.setValue(config, "relay7", 0.0)
+    pass
+elif newState == 1:
+    lib.sensor.setValue(config, "relay1", 1.0)
+    lib.sensor.setValue(config, "relay7", 0.0)
+    pass
+elif newState == 2:
+    lib.sensor.setValue(config, "relay1", 1.0)
+    lib.sensor.setValue(config, "relay7", 1.0)
+    pass
 
 lib.sensor.setValue(config, "state0", newState)
 
