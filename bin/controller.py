@@ -26,7 +26,7 @@ paused = False
 
 if currentState == 0:
     # system off
-    if collectorTemp > 45.0 or collectorOutTemp > 30.0:
+    if collectorTemp > 35.0 or collectorOutTemp > 35.0:
         log.info("starting collector pump")
         newState = 1
 elif currentState == 1:
@@ -39,7 +39,7 @@ elif currentState == 1:
             # let system stabilize
             break
 
-        if collectorTemp < 20.0 or collectorOutTemp < 20.0:
+        if collectorTemp < 30.0 or collectorOutTemp < 30.0:
             log.info("system cool down, switching to 0")
             # it getting cold
             newState = 0
@@ -66,7 +66,8 @@ elif currentState == 2:
     while True:
         # is the sytem stabilized?
         if lib.sensor.isValueStable(config, "state0", 10) == False:
-            if lib.sensor.isValueStable(config, "state0", 5) == True:
+            # first five minutes turn the collector pump to let it heat up
+            if lib.sensor.isValueStable(config, "state0", 5) == False:
                 paused = True
                 log.info("paused in state 2")
                 break
