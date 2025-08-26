@@ -51,7 +51,8 @@ elif currentState == 1:
             break
 
         # water to ground more than 18? enough power for heating the boiler
-        if waterToGroundTemp > 18.0:
+        if waterToGroundTemp > 18.0 and collectorOutTemp > boilerTemp:
+            # if collectorOutTemp > 40.0:
             log.info("switching to boiler")
             newState = 2
             break
@@ -76,7 +77,7 @@ elif currentState == 2:
             # let system stabilize
             break
 
-        if boilerTemp > 57:
+        if boilerTemp > 66:
             log.info("boiler temp on target. switching to 1")
             newState = 1
             break
