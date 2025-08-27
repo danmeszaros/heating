@@ -66,6 +66,10 @@ reporter:
     valueLog: "log/values.txt"
     url: "www.dna1.cz"
     mapping:
+        - dev: "temp0"
+          id: 1000
+        - dev: "temp1"
+          id: 1001
         - dev: "temp2"
           id: 1002
         - dev: "temp3"
@@ -78,6 +82,10 @@ reporter:
           id: 1006
         - dev: "temp7"
           id: 1007
+        - dev: "temp8"
+          id: 1008
+        - dev: "temp9"
+          id: 1009
         - dev: "relay1"
           id: 2000
           aging: false
